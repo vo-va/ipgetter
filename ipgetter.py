@@ -105,6 +105,17 @@ class IPgetter(object):
                             'http://checkip.amazonaws.com',
                             'https://api.ipify.org',
                             'https://v4.ident.me']
+        self._nTries = 7
+
+    @property
+    def retries(self):
+        return self._nTries
+
+    @retries.setter
+    def retries(self, value):
+        if isinstance(value, int) \
+                and value > 0 and value < len(self.server_list):
+            self._nTries = value
 
     def get_externalip(self):
         '''
@@ -112,11 +123,14 @@ class IPgetter(object):
         '''
 
         myip = ''
-        for i in range(7):
-            myip = self.fetch(random.choice(self.server_list))
+        lst = self.server_list[:]
+        for i in range(self._nTries):
+            takeone = random.choice(lst)
+            myip = self.fetch(takeone)
             if myip != '':
                 return myip
             else:
+                lst.pop(takeone)
                 continue
         return ''
 
