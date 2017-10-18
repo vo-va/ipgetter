@@ -58,53 +58,54 @@ class IPgetter(object):
     '''
 
     def __init__(self):
-        self.server_list = ['http://ip.dnsexit.com',
-                            'http://ifconfig.me/ip',
-                            'http://echoip.com',
-                            'http://ipecho.net/plain',
-                            'http://checkip.dyndns.org/plain',
-                            'http://whatismyipaddress.com/',
-                            'http://websiteipaddress.com/WhatIsMyIp',
-                            'http://getmyipaddress.org/',
-                            'http://www.my-ip-address.net/',
-                            'http://myexternalip.com/raw',
-                            'http://www.canyouseeme.org/',
-                            'http://www.trackip.net/',
-                            'http://icanhazip.com/',
-                            'http://www.iplocation.net/',
-                            'http://www.howtofindmyipaddress.com/',
-                            'http://www.ipchicken.com/',
-                            'http://whatsmyip.net/',
-                            'http://www.ip-adress.com/',
-                            'http://checkmyip.com/',
-                            'http://www.tracemyip.org/',
-                            'http://www.lawrencegoetz.com/programs/ipinfo/',
-                            'http://www.findmyip.co/',
-                            'http://ip-lookup.net/',
-                            'http://www.dslreports.com/whois',
-                            'http://www.mon-ip.com/en/my-ip/',
-                            'http://www.myip.ru',
-                            'http://ipgoat.com/',
-                            'http://www.myipnumber.com/my-ip-address.asp',
-                            'http://www.whatsmyipaddress.net/',
-                            'http://formyip.com/',
-                            'https://check.torproject.org/',
-                            'http://www.displaymyip.com/',
-                            'http://www.bobborst.com/tools/whatsmyip/',
-                            'http://www.geoiptool.com/',
-                            'https://www.whatsmydns.net/whats-my-ip-address.html',
-                            'https://www.privateinternetaccess.com/pages/whats-my-ip/',
-                            'http://checkip.dyndns.com/',
-                            'http://myexternalip.com/',
-                            'http://www.ip-adress.eu/',
-                            'http://www.infosniper.net/',
-                            'https://wtfismyip.com/text',
-                            'http://ipinfo.io/',
-                            'http://httpbin.org/ip',
-                            'https://diagnostic.opendns.com/myip',
-                            'http://checkip.amazonaws.com',
-                            'https://api.ipify.org',
-                            'https://v4.ident.me']
+        self.server_list = \
+            ['http://ip.dnsexit.com',
+             'http://ifconfig.me/ip',
+             'http://echoip.com',
+             'http://ipecho.net/plain',
+             'http://checkip.dyndns.org/plain',
+             'http://whatismyipaddress.com/',
+             'http://websiteipaddress.com/WhatIsMyIp',
+             'http://getmyipaddress.org/',
+             'http://www.my-ip-address.net/',
+             'http://myexternalip.com/raw',
+             'http://www.canyouseeme.org/',
+             'http://www.trackip.net/',
+             'http://icanhazip.com/',
+             'http://www.iplocation.net/',
+             'http://www.howtofindmyipaddress.com/',
+             'http://www.ipchicken.com/',
+             'http://whatsmyip.net/',
+             'http://www.ip-adress.com/',
+             'http://checkmyip.com/',
+             'http://www.tracemyip.org/',
+             'http://www.lawrencegoetz.com/programs/ipinfo/',
+             'http://www.findmyip.co/',
+             'http://ip-lookup.net/',
+             'http://www.dslreports.com/whois',
+             'http://www.mon-ip.com/en/my-ip/',
+             'http://www.myip.ru',
+             'http://ipgoat.com/',
+             'http://www.myipnumber.com/my-ip-address.asp',
+             'http://www.whatsmyipaddress.net/',
+             'http://formyip.com/',
+             'https://check.torproject.org/',
+             'http://www.displaymyip.com/',
+             'http://www.bobborst.com/tools/whatsmyip/',
+             'http://www.geoiptool.com/',
+             'https://www.whatsmydns.net/whats-my-ip-address.html',
+             'https://www.privateinternetaccess.com/pages/whats-my-ip/',
+             'http://checkip.dyndns.com/',
+             'http://myexternalip.com/',
+             'http://www.ip-adress.eu/',
+             'http://www.infosniper.net/',
+             'https://wtfismyip.com/text',
+             'http://ipinfo.io/',
+             'http://httpbin.org/ip',
+             'https://diagnostic.opendns.com/myip',
+             'http://checkip.amazonaws.com',
+             'https://api.ipify.org',
+             'https://v4.ident.me']
         self._nTries = 7
 
     @property
@@ -141,7 +142,8 @@ class IPgetter(object):
         url = None
         opener = urllib.build_opener()
         opener.addheaders = [('User-agent',
-                              "Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0")]
+                              "Mozilla/5.0 (X11; Linux x86_64; rv:24.0) "
+                              "Gecko/20100101 Firefox/24.0")]
 
         try:
             url = opener.open(server, timeout=2)
@@ -154,9 +156,11 @@ class IPgetter(object):
                 except UnicodeDecodeError:
                     content = content.decode('ISO-8859-1')
 
-            m = re.search(
-                '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)',
-                content)
+            m = re.search('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
+                          '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
+                          '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.'
+                          '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)',
+                          content)
             myip = m.group(0)
             return myip if len(myip) > 0 else ''
         except Exception:
@@ -180,10 +184,16 @@ class IPgetter(object):
         ips_set = set(ips)
         print('\nNumber of servers: {}'.format(len(self.server_list)))
         print("IP's :")
-        for ip, ocorrencia in zip(ips_set, map(lambda x: ips.count(x), ips_set)):
-            print('{0} = {1} ocurrenc{2}'.format(ip if len(ip) > 0 else 'broken server', ocorrencia, 'y' if ocorrencia == 1 else 'ies'))
+        for ip, ocorrencia in \
+                zip(ips_set, map(lambda x: ips.count(x), ips_set)):
+            print('{0} = {1} ocurrenc{2}'.format(ip if len(ip) > 0
+                                                 else 'broken server',
+                                                 ocorrencia, 'y'
+                                                 if ocorrencia == 1
+                                                 else 'ies'))
         print('\n')
         print(resultdict)
+
 
 if __name__ == '__main__':
     print(myip())
