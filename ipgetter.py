@@ -57,7 +57,8 @@ class IPgetter(object):
     on a single server
     '''
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super(IPgetter, self).__init__(*args, **kwargs)
         self.server_list = \
             ['http://ip.dnsexit.com',
              'http://ifconfig.me/ip',
