@@ -132,7 +132,9 @@ class IPgetter(object):
             if myip != '':
                 return myip
             else:
-                lst.pop(takeone)
+                print('Server {0} returned an empty string instead of ip address'.format(takeone))
+                i = lst.index(takeone)
+                lst.pop(i)
                 continue
         return ''
 
